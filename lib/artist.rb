@@ -1,45 +1,47 @@
 class Artist
   attr_accessor :name, :songs
-
-  @@all = []
+  @@all = []  #stores all instances of Artist 
 
   def initialize(name)
     @name = name
     @songs = []
-    save
-  end
-
-  def self.all
-    @@all
-  end
-
-  def self.create(name)
-    artist = self.new(name)
-    artist.name = name
-    artist
-  end
-
-  def self.find(name)
-    self.all.detect { |artist| artist.name == name }
-  end
-
-  def self.find_or_create_by_name(name)
-    self.find(name) || self.create(name)
   end
 
   def add_song(song)
-    @songs << song
-  end
-
-  def print_songs
-    songs.each { |song| puts song.name }
+    self.songs << song    #Artist.songs reader returns all songs 
+                          #stored in @songs
   end
 
   def save
-    @@all << self
+    @@all << self     #saves all created instances of Artist class in 
+                      #@@all class variable
   end
 
-  def songs
-    @songs
+  def self.all      #class method all returns all instances of Artist class 
+    @@all
+  end
+
+  def self.find_or_create_by_name(name)   #class method uses find/create class 
+                                          #methods to detect or create instances
+    if self.find(name)
+      self.find(name)
+    else
+      self.create(name)
+    end
+  end
+
+  def self.find(name)     #class method detects instances from @@all class variable
+    self.all.detect { |artist| artist.name == name }
+  end
+
+  def self.create(name)   #class method creates & stores instances vs initializing
+    artist = Artist.new(name)
+    artist.save
+    artist
+  end
+
+  def print_songs #instance method iterates through @songs of an instance of Artist
+    self.songs.each {|song| song.name}
   end
 end
+
