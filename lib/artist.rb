@@ -108,4 +108,3 @@ class Artist
   end
 
 end
-
