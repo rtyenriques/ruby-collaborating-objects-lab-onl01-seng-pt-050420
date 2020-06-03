@@ -5,11 +5,11 @@ class Song
 
   def initialize(name)
     @name = name
-    @all = name
+    @@all = name
   end
 
 def self.all
-  self.all
+  @@all
 end
 
   def self.new_by_filename(file)
