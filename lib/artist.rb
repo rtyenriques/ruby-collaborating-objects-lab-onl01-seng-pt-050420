@@ -6,6 +6,7 @@ attr_accessor :name, :songs
 
 def intialize(name)
   @name = name
+  @songs = []
 end
 
 
