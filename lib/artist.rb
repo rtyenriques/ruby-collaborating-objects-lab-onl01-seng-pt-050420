@@ -6,4 +6,9 @@ attr_accessor :name
 def intialize(name)
   @name = name
 end
+
+def self.all 
+  @@all
+end
+
 end
