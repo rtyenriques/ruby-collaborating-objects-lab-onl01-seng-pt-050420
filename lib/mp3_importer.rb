@@ -1,5 +1,5 @@
-class MP3Importer
 
+class MP3Importer
   attr_accessor :path
 
   def initialize(path)
@@ -7,11 +7,10 @@ class MP3Importer
   end
 
   def files
-    @files ||= Dir.entries(@path).select {|song| !File.directory?(song) && song.end_with?(".mp3")}
+    Dir[@path+"/*.mp3"].map { |file| file.split("/").last }
   end
 
   def import
-    files.each {|song| Song.new_by_filename(song)}
+    files.each { |file| Song.new_by_filename(file) }
   end
-
 end
