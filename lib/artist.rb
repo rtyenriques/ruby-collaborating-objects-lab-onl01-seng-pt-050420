@@ -4,7 +4,7 @@ attr_accessor :name
 
 
 
-def intialize
+def intialize(name)
 
 end
 
